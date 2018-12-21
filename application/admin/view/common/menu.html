@@ -12,7 +12,7 @@
     </div>
 
 <!--
-     菜单搜索
+    &lt;!&ndash; 菜单搜索 &ndash;&gt;
     <form action="" method="get" class="sidebar-form" onsubmit="return false;">
         <div class="input-group">
             <input type="text" name="q" class="form-control" placeholder="{:__('Search menu')}">
@@ -26,6 +26,7 @@
     </form>
 -->
 
+
     <!-- 移动端一级菜单 -->
     <div class="mobilenav visible-xs">
 
@@ -36,5 +37,12 @@
 
         <!-- 菜单可以在 后台管理->权限管理->菜单规则 中进行增删改排序 -->
         {$menulist}
+<!--
+        &lt;!&ndash;以下4行可以删除或改成自己的链接,但建议你在你的网站上添加一个FastAdmin的链接&ndash;&gt;
+        <li class="header" data-rel="external">{:__('Links')}</li>
+        <li data-rel="external"><a href="https://doc.fastadmin.net" target="_blank"><i class="fa fa-list text-red"></i> <span>{:__('Docs')}</span></a></li>
+        <li data-rel="external"><a href="https://forum.fastadmin.net" target="_blank"><i class="fa fa-comment text-yellow"></i> <span>{:__('Forum')}</span></a></li>
+        <li data-rel="external"><a href="https://jq.qq.com/?_wv=1027&k=487PNBb" target="_blank"><i class="fa fa-qq text-aqua"></i> <span>{:__('QQ qun')}</span></a></li>
+-->
     </ul>
 </section>
