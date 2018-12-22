@@ -1,7 +1,7 @@
 <?php
 
 return array (
-  'name' => 'FastAdmin',
+  'name' => 'YunDuAdmin',
   'beian' => '',
   'cdnurl' => '',
   'version' => '1.0.1',
