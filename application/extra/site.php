@@ -16,9 +16,10 @@ return array (
   'categorytype' => 
   array (
     'default' => 'Default',
-    'page' => 'Page',
-    'article' => 'Article',
-    'test' => 'Test',
+    'advertisement type' => 'Advertisement type',
+    'serving media' => 'Serving media',
+    'customer group' => 'Customer group',
+    'target area' => 'Target area',
   ),
   'configgroup' => 
   array (
