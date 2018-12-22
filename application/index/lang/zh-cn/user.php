@@ -4,6 +4,8 @@ return [
     'User center'                           => '会员中心',
     'Register'                              => '注册',
     'Login'                                 => '登录',
+    'YunDuKeJi-user-Login'                  => '云度科技-用户登录',
+    'YunDuKeJi-user-Register'               => '云度科技-用户注册',
     'Account'                               => '账号',
     'Mobile'                                => '手机号',
     'Email'                                 => '邮箱',

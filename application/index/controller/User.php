@@ -201,7 +201,7 @@ class User extends Frontend
             $url = $referer;
         }
         $this->view->assign('url', $url);
-        $this->view->assign('title', __('Login'));
+        $this->view->assign('title', __('YunDuKeJi-user-Login'));
         return $this->view->fetch();
     }
 
