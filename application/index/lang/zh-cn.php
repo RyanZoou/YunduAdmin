@@ -117,11 +117,26 @@ return [
 
     'Apply List'                                              => '申请列表',
 
+//  layout
     'Product Description'                                     => '产品介绍',
     'News'                                                    => '新闻动态',
     'About Us'                                                => '关于我们',
     'Join Us'                                                 => '代理加盟',
 
+//sidenav
+    'User Information'                                        => '用户信息',
+    'Advertising delivery'                                    => '广告投放',
+    'Mobile New Media'                                        => '移动新媒体',
+    'Video advertisement'                                     => '视频广告',
+    'Anchor advertisement'                                    => '主播广告',
+    'Fans tool'                                               => '涨粉宝',
+    'Small program production'                                => '小程序制作',
+    'Put in management'                                       => '投放管理',
+    'Delivery data management'                                => '投放数据管理',
+    'Account flow'                                            => '账号流水',
+    'Information Center'                                      => '信息中心',
+    'Admin Information'                                       => '管理员信息',
+    'More Features'                                           => '更多功能',
 
-    'ApplyList'                                              => '申请列表'
+    'ApplyList'                                               => '申请列表'
 ];

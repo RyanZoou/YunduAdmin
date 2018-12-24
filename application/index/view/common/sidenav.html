@@ -1,11 +1,26 @@
-<div class="sidenav">
+<div class="sidenav" style="margin-top: 15px">
     {:hook('user_sidenav_before')}
     <ul class="list-group">
-        <li class="list-group-heading">{:__('User center')}</li>
+        <li class="list-group-heading" style="background: lightgray;margin: 0;margin-top: -20px;height: 40px;text-align: center;line-height: 40px;font-size: 16px;color: black"><span class="glyphicon glyphicon-user"></span> &nbsp;{:__('User Information')}</li>
         <li class="list-group-item {:$config['actionname']=='index'?'active':''}"> <a href="{:url('user/index')}"><i class="fa fa-user-circle fa-fw"></i> {:__('User center')}</a> </li>
         <li class="list-group-item {:$config['actionname']=='profile'?'active':''}"> <a href="{:url('user/profile')}"><i class="fa fa-user-o fa-fw"></i> {:__('Profile')}</a> </li>
         <li class="list-group-item {:$config['actionname']=='changepwd'?'active':''}"> <a href="{:url('user/changepwd')}"><i class="fa fa-key fa-fw"></i> {:__('Change password')}</a> </li>
-        <li class="list-group-item {:$config['actionname']=='logout'?'active':''}"> <a href="{:url('user/logout')}"><i class="fa fa-sign-out fa-fw"></i> {:__('Sign out')}</a> </li>
+
+        <li class="list-group-heading" style="background: lightgray;margin: 5px auto;height: 36px;text-align: center;line-height: 36px;font-size: 16px;color: black"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;{:__('Advertising delivery')}</li>
+        <li class="list-group-item {:$config['actionname']=='mobilenewmedia'?'active':''}"> <a href="{:url('user/mobilenewmedia')}"><i class="glyphicon glyphicon-qrcode"></i>  &nbsp;{:__('Mobile New Media')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='videoadvertisement'?'active':''}"> <a href="{:url('user/videoadvertisement')}"><i class="glyphicon glyphicon-film"></i>&nbsp; {:__('Video advertisement')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='anchoradvertisement'?'active':''}"> <a href="{:url('user/anchoradvertisement')}"><i class="glyphicon glyphicon-phone"></i>  &nbsp;{:__('Anchor advertisement')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='fanstool'?'active':''}"> <a href="{:url('user/fanstool')}"><i class="glyphicon glyphicon-piggy-bank"></i>  &nbsp;{:__('Fans tool')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='smallprogramproduction'?'active':''}"> <a href="{:url('user/smallprogramproduction')}"><i class="glyphicon glyphicon-record"></i>  &nbsp;{:__('Small program production')}</a> </li>
+
+        <li class="list-group-heading" style="background: lightgray;margin: 5px auto;height: 36px;text-align: center;line-height: 36px;font-size: 16px;color: black"><span class="glyphicon glyphicon-indent-left"></span> &nbsp;{:__('Put in management')}</li>
+        <li class="list-group-item {:$config['actionname']=='resultdata'?'active':''}"> <a href="{:url('user/resultdata')}"><i class="glyphicon glyphicon-calendar"></i> &nbsp;{:__('Delivery data management')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='userflow'?'active':''}"> <a href="{:url('user/userflow')}"><i class="glyphicon glyphicon-retweet"></i> &nbsp;{:__('Account flow')}</a> </li>
+
+        <li class="list-group-heading" style="background: lightgray;margin: 5px auto;height: 36px;text-align: center;line-height: 36px;font-size: 16px;color: black"><span class="glyphicon glyphicon-bullhorn"></span> &nbsp;{:__('Information Center')}</li>
+        <li class="list-group-item {:$config['actionname']=='admininformation'?'active':''}"> <a href="{:url('user/admininformation')}"><i class="glyphicon glyphicon-user"></i> &nbsp;{:__('Admin Information')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='morefeatures'?'active':''}"> <a href="{:url('user/morefeatures')}"><i class="glyphicon glyphicon-briefcase"></i> &nbsp;{:__('More Features')}</a> </li>
+
     </ul>
     {:hook('user_sidenav_after')}
 </div>
