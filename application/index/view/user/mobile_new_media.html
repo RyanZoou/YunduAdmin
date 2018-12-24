@@ -1,0 +1,291 @@
+<style>
+    .basicinfo .row > .col-xs-4 {
+        padding-right: 0;
+    }
+
+    .basicinfo .row > div {
+        margin: 5px 0;
+    }
+    .ad_mode,.ad_position_label{
+        display: inline-block;
+        float: left;
+        margin-right: 15px;
+    }
+    label{
+        font-weight:normal;
+    }
+</style>
+<script src="__CDN__/assets/libs/jquery/src/jquery.js"></script>
+
+<div id="content-container" class="container">
+    <div class="row">
+        <div class="col-md-2">
+            {include file="common/sidenav" /}
+        </div>
+        <div class="col-md-10" style="margin-top: 15px">
+            <div class="panel panel-default ">
+                <div class="panel-body">
+                    <h3 class="page-header">
+                        {:__('Mobile New Media')}
+                    </h3>
+                    <form style="font-size: 15px;line-height: 30px;">
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" for="ad_name" style="text-align: right;">投放名称</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" id="ad_name" name="ad_name" style="background: lightgray">
+                                </div>
+                                <span class="col-md-1"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" for="ad_business" style="text-align: right;">投放行业</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" id="ad_business" name="ad_business">
+                                        <option value="食品">食品</option>
+                                        <option value="粮油调味">粮油调味</option>
+                                        <option value="冲调饮品">冲调饮品</option>
+                                        <option value="乳制品">乳制品</option>
+                                        <option value="生鲜">生鲜</option>
+                                        <option value="酒水">酒水</option>
+                                        <option value="食品综合">食品综合</option>
+                                    </select>
+                                </div>
+                                <span class="col-md-7"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" for="ad_platform" style="text-align: right;">投放平台</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" id="ad_platform" name="ad_platform">
+                                        <option value="食品">腾讯</option>
+                                        <option value="粮油调味">新浪</option>
+                                        <option value="冲调饮品">搜狐</option>
+                                        <option value="乳制品">陌陌</option>
+                                        <option value="生鲜">UC</option>
+                                    </select>
+                                </div>
+                                <span class="col-md-7"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-md-2" style="text-align: right;">广告形式</span>
+                                <div class="col-md-10">
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="电脑端官网" name="ad_mode_pc"> 电脑端官网
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="AIO迷你页" name="ad_mode_AIO"> AIO迷你页
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="手机端官网" name="ad_mode_phone"> 手机端官网
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="新闻客户端" name="ad_mode_news"> 新闻客户端
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="天天快报" name="ad_mode_kuaibao"> 天天快报
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="插件" name="ad_mode_Plugin"> 插件
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="应用app" name="ad_mode_app"> 应用app
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-md-2" style="text-align: right;">广&nbsp; 告&nbsp; 位</span>
+                                <div class="col-md-9">
+                                    <label class="ad_position_label">
+                                        <input type="radio" name="ad_position" value="大图"> 大图
+                                    </label>
+                                    <label class="ad_position_label">
+                                        <input type="radio" name="ad_position" value="3图"> 3图
+                                    </label>
+                                    <label class="ad_position_label">
+                                        <input type="radio" name="ad_position" value="小图"> 小图
+                                    </label>
+                                    <label class="ad_position_label">
+                                        <input type="radio" name="ad_position" value="聚焦图"> 聚焦图
+                                    </label>
+                                </div>
+                                <span class="col-md-1"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" for="ad_qualifications_prove" style="text-align: right;">资质上传</label>
+                                <div class="col-md-9">
+                                    <input type="file" name="ad_qualifications_prove" id="ad_qualifications_prove">
+                                </div>
+                                <span class="col-md-1"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-md-2" style="text-align: right;">性 &nbsp; &nbsp; &nbsp;&nbsp;别</span>
+                                <div class="col-md-9">
+                                    <label class="ad_position_label">
+                                        <input type="radio" name="ad_gender" value="不限"> 不限
+                                    </label>
+                                    <label class="ad_position_label">
+                                        <input type="radio" name="ad_gender" value="男"> 男
+                                    </label>
+                                    <label class="ad_position_label">
+                                        <input type="radio" name="ad_gender" value="女"> 女
+                                    </label>
+                                </div>
+                                <span class="col-md-1"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-md-2" style="text-align: right;">年&nbsp; 龄&nbsp; 段</span>
+                                <div class="col-md-10">
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="不限" name="ad_age_all"> 不限
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="1~18" name="ad_age_1_18"> 1~18
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="19~23" name="ad_age_19_23"> 19~23
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="24~30" name="ad_age_24_30"> 24~30
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="31~40" name="ad_age_31_40"> 31~40
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="41~50" name="ad_age_41_50"> 41~50
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="51~59" name="ad_age_51_59"> 51~59
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="60以上" name="ad_age_60"> 60以上
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-md-2" style="text-align: right;">兴趣分类</span>
+                                <div class="col-md-9">
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="不限" name="ad_hobby_type_all"> 不限
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="游戏" name="ad_hobby_type_1"> 游戏
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="购物百货" name="ad_hobby_type_2"> 购物百货
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="金融理财" name="ad_hobby_type_3"> 金融理财
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="旅游出行" name="ad_hobby_type_4"> 旅游出行
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="服饰箱包" name="ad_hobby_type_5"> 服饰箱包
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="美容美妆" name="ad_hobby_type_6"> 美容美妆
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="汽车" name="ad_hobby_type_7"> 汽车
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="房产" name="ad_hobby_type_8"> 房产
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="餐饮美食" name="ad_hobby_type_9"> 餐饮美食
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="母婴儿童" name="ad_hobby_type_10"> 母婴儿童
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="科技数码" name="ad_hobby_type_11"> 科技数码
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="体育运动" name="ad_hobby_type_12"> 体育运动
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="生活服务" name="ad_hobby_type_13"> 生活服务
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="医疗健康" name="ad_hobby_type_14"> 医疗健康
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="法律服务" name="ad_hobby_type_15"> 法律服务
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="文化娱乐" name="ad_hobby_type_16"> 文化娱乐
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="商务服务" name="ad_hobby_type_17"> 商务服务
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="装修建材" name="ad_hobby_type_18"> 装修建材
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="教育培训" name="ad_hobby_type_19"> 教育培训
+                                    </label>
+                                </div>
+                                <span class="col-md-1"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" for="city-picker" style="text-align: right;">投放行业</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="city-picker" name="ad_city" data-toggle="city-picker">
+                                </div>
+                                <span class="col-md-4"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-inline" data-toggle="cxselect" data-url="__CDN__/assets/libs/fastadmin-cxselect/js/cityData.min.json" data-selects="province,city,area" data-json-space="" data-json-name="n" data-json-value="">
+                            <select class="province form-control" data-first-title="选择省">
+                                <option value="">请选择</option>
+                                <option value="浙江省" selected="">浙江省</option>
+                            </select>
+                            <select class="city form-control" data-first-title="选择市">
+                                <option value="">请选择</option>
+                                <option value="杭州市" selected="">杭州市</option>
+                            </select>
+                            <select class="area form-control" data-first-title="选择地区">
+                                <option value="">请选择</option>
+                                <option value="西湖区" selected="">西湖区</option>
+                            </select>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#city-picker').data('citypicker').getCode(type);
+</script>
