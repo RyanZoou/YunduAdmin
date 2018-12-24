@@ -114,4 +114,14 @@ return [
     'You have no permission'                                 => '你没有权限访问',
     'An unexpected error occurred'                           => '发生了一个意外错误,程序猿正在紧急处理中',
     'This page will be re-directed in %s seconds'            => '页面将在 %s 秒后自动跳转',
+
+    'Apply List'                                              => '申请列表',
+
+    'Product Description'                                     => '产品介绍',
+    'News'                                                    => '新闻动态',
+    'About Us'                                                => '关于我们',
+    'Join Us'                                                 => '代理加盟',
+
+
+    'ApplyList'                                              => '申请列表'
 ];
