@@ -96,6 +96,15 @@ define(['jquery', 'bootstrap', 'frontend', 'form', 'template'], function ($, und
                     }
                 });
             });
+        },
+        mobile_new_media: function () {
+            // 给上传按钮添加上传成功事件
+            $("#ad_proved_div").data("upload-success", function (data) {
+                var url = Fast.api.cdnurl(data.url);
+                $(".profile-user-img").prop("src", url);
+                Toastr.success(__('Upload successful'));
+            });
+            Form.api.bindevent($("#ad_support_form"));
         }
     };
     return Controller;
