@@ -48,7 +48,7 @@
 <link href="__CDN__/assets/libs/bootstrap-daterangepicker/daterangepicker.scss" rel="stylesheet">
 <script src="__CDN__/assets/libs/moment/moment.js"></script>
 <script src="__CDN__/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!--<script src="__CDN__/assets/js/require-form.js"></script>-->
+
 <div id="content-container" class="container">
     <div class="row">
         <div class="col-md-2">
@@ -60,9 +60,9 @@
                     <h3 class="page-header">
                         {:__('Mobile New Media')}
                     </h3>
-                    <form id="ad_support_form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="{:url('api/user/mobileNewMedia')}">
+                    <form id="ad_support_form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="{:url('api/Order/add')}">
                         {:token()}
-
+                        <input type="hidden" name="ad_type" value="移动新媒体">
                         <div class="form-group">
                             <div class="row">
                                 <label class="col-md-2" for="ad_name" style="text-align: right;">投放名称</label>
@@ -96,11 +96,11 @@
                                 <label class="col-md-2" for="ad_platform" style="text-align: right;">投放平台</label>
                                 <div class="col-md-3">
                                     <select class="form-control" id="ad_platform" name="ad_platform">
-                                        <option value="食品">腾讯</option>
-                                        <option value="粮油调味">新浪</option>
-                                        <option value="冲调饮品">搜狐</option>
-                                        <option value="乳制品">陌陌</option>
-                                        <option value="生鲜">UC</option>
+                                        <option value="腾讯">腾讯</option>
+                                        <option value="新浪">新浪</option>
+                                        <option value="搜狐">搜狐</option>
+                                        <option value="陌陌">陌陌</option>
+                                        <option value="UC">UC</option>
                                     </select>
                                 </div>
                                 <span class="col-md-7"></span>
@@ -161,7 +161,7 @@
                             <div class="row">
                                 <label class="col-md-2" for="ad_proved_div" style="text-align: right;">资质上传</label>
                                 <div class="col-md-9">
-                                    <input type="hidden" name="avatar" id="c-avatar" value="" />
+                                    <input type="hidden" name="ad_proved_img_path" id="ad_proved_img_path" value="" />
                                     <div class="profile-avatar-container">
                                         <img class="profile-user-img img-responsive img-circle plupload" src="" alt="">
                                         <div class="profile-avatar-text img-circle">点击上传</div>

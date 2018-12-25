@@ -102,6 +102,7 @@ define(['jquery', 'bootstrap', 'frontend', 'form', 'template'], function ($, und
             $("#ad_proved_div").data("upload-success", function (data) {
                 var url = Fast.api.cdnurl(data.url);
                 $(".profile-user-img").prop("src", url);
+                $("#ad_proved_img_path").val(url);
                 Toastr.success(__('Upload successful'));
             });
             Form.api.bindevent($("#ad_support_form"));
