@@ -105,7 +105,18 @@ define(['jquery', 'bootstrap', 'frontend', 'form', 'template'], function ($, und
                 $("#ad_proved_img_path").val(url);
                 Toastr.success(__('Upload successful'));
             });
-            Form.api.bindevent($("#ad_support_form"));
+
+            Form.api.bindevent($("#ad_support_form"), function (data, ret) {
+                if (ret.code == 1) {
+                    if (confirm("添加成功，是否跳转查看结果？")) {
+                        setTimeout(function () {
+                            location.href = data.url ? data.url : "/";
+                        }, 1000);
+                    } else {
+                        alert("添加失败");
+                    }
+                }
+            });
         }
     };
     return Controller;

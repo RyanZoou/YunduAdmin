@@ -177,7 +177,7 @@
                                 <span class="col-md-2" style="text-align: right;">性 &nbsp; &nbsp; &nbsp;&nbsp;别</span>
                                 <div class="col-md-9">
                                     <label class="ad_position_label">
-                                        <input type="radio" name="ad_gender" value="不限"> 不限
+                                        <input type="radio" name="ad_gender" value="不限" checked> 不限
                                     </label>
                                     <label class="ad_position_label">
                                         <input type="radio" name="ad_gender" value="男"> 男
@@ -195,7 +195,7 @@
                                 <span class="col-md-2" style="text-align: right;">年&nbsp; 龄&nbsp; 段</span>
                                 <div class="col-md-10">
                                     <label class="ad_mode">
-                                        <input type="checkbox" value="不限" name="ad_age_all"> 不限
+                                        <input type="checkbox" value="不限" name="ad_age_all" checked> 不限
                                     </label>
                                     <label class="ad_mode">
                                         <input type="checkbox" value="1~18" name="ad_age_1_18"> 1~18
@@ -227,7 +227,7 @@
                                 <span class="col-md-2" style="text-align: right;">兴趣分类</span>
                                 <div class="col-md-9">
                                     <label class="ad_mode">
-                                        <input type="checkbox" value="不限" name="ad_hobby_type_all"> 不限
+                                        <input type="checkbox" value="不限" name="ad_hobby_type_all" checked> 不限
                                     </label>
                                     <label class="ad_mode">
                                         <input type="checkbox" value="游戏" name="ad_hobby_type_1"> 游戏
@@ -328,7 +328,7 @@
                             <div class="row">
                                 <label class="col-md-2" for="ad_daily_price" style="text-align: right;">每日预算</label>
                                 <div class="col-md-4">
-                                    <input class="form-control" id="ad_daily_price" name="ad_daily_price" placeholder="最低200">
+                                    <input type="number" class="form-control" id="ad_daily_price" name="ad_daily_price" placeholder="最低200">
                                 </div>
                                 <span class="col-md-6"></span>
                             </div>
@@ -354,7 +354,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-1"></div>
-                                <button type="submit" class="col-md-2 btn btn-md btn-info">{:__('Submit')}</button>
+                                <button id="ad_submit" type="submit" class="col-md-2 btn btn-md btn-info">{:__('Submit')}</button>
                                 <div class="col-md-9">
                                 </div>
                             </div>
@@ -376,7 +376,7 @@
         var end = moment().add(30, 'days');
         function cb(start, end) {
             $('#reportrange span').html(start.format('YYYY-MM-DD') + ' &nbsp; &nbsp;至 &nbsp; &nbsp;' + end.format('YYYY-MM-DD'));
-            $('#ad_date_range').val(start.format('YYYY-MM-DD') + '~' + end.format('YYYY-MM-DD'));
+            $('#ad_date_range').val(start.format('YYYY-MM-DD') + ' 至 ' + end.format('YYYY-MM-DD'));
         }
         $('#reportrange').daterangepicker({
             startDate: start,
