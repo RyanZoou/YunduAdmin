@@ -111,7 +111,7 @@ class Order extends Api
         try {
             $order = ModerOrder::create($data);
             $orderId = $order->getLastInsID();
-            $data = array('order_id' => $orderId, 'url' => 'result_data/order_id/' . $orderId);
+            $data = array('order_id' => $orderId, 'url' => 'resultdata/orderid/' . $orderId);
             Db::commit();
             $this->success(__('添加成功'), $data);
         } catch (Exception $e)
