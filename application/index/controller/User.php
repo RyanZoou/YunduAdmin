@@ -296,25 +296,19 @@ class User extends Frontend
         return $this->view->fetch();
     }
 
-    public function anchorAdvertisement()
-    {
-        $this->view->assign('title', __('Anchor advertisement'));
-        return $this->view->fetch();
-    }
-
-    public function fansTool()
-    {
-        $this->view->assign('title', __('Fans tool'));
-        return $this->view->fetch();
-    }
-
     public function smallProgramProduction()
     {
         $this->view->assign('title', __('Small program production'));
         return $this->view->fetch();
     }
 
-    public function deliveryDataManagement()
+    public function fullBigData()
+    {
+        $this->view->assign('title', __('Anchor advertisement'));
+        return $this->view->fetch();
+    }
+
+    public function resultData()
     {
         $this->view->assign('title', __('Delivery data management'));
         return $this->view->fetch();

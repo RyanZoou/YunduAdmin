@@ -97,7 +97,7 @@ define(['jquery', 'bootstrap', 'frontend', 'form', 'template'], function ($, und
                 });
             });
         },
-        mobile_new_media: function () {
+        mobilenewmedia: function () {
             // 给上传按钮添加上传成功事件
             $("#ad_proved_div").data("upload-success", function (data) {
                 var url = Fast.api.cdnurl(data.url);

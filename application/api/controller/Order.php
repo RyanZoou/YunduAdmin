@@ -24,7 +24,7 @@ class Order extends Api
         $data = [];
         $data['userId'] = $user_info['id'];
 
-        if (!isset($params['ad_type']) || $params['ad_type'] != '移动新媒体'){
+        if (!isset($params['ad_type'])){
             $this->error(__('未添加广告类型'));
         }
         if (!$params['ad_name']) {
@@ -106,8 +106,6 @@ class Order extends Api
         if (!$data['adHobbyType'] || empty($data['adHobbyType'])) {
             $this->error(__('请选择兴趣分类'));
         }
-        $hostUrl = rtrim($this->request->host(),'/');
-        $rootUrl = rtrim($this->request->root(),'/');
 
         Db::startTrans();
         try {
