@@ -65,7 +65,7 @@ class Order extends Api
         $data['adBusinessType'] = addslashes($params['ad_business']);
         $data['adPlatform'] = addslashes($params['ad_platform']);
         $data['adPosition'] = addslashes($params['ad_position']);
-        $data['adProvedFilePath'] = addslashes($params['ad_proved_img_path']);
+        $data['adProvedFilePath'] = addslashes(preg_replace('@/YunduAdmin/public@','',$params['ad_proved_img_path']));
         $data['adForGender'] = addslashes($params['ad_gender']);
         $data['adForArea'] = addslashes($params['ad_city']);
         $data['adDateRange'] = addslashes($params['ad_date_range']);
@@ -111,7 +111,7 @@ class Order extends Api
         try {
             $order = ModerOrder::create($data);
             $orderId = $order->getLastInsID();
-            $data = array('order_id' => $orderId, 'url' => 'resultdata/orderid/' . $orderId);
+            $data = array('order_id' => $orderId, 'url' => '../order/index?orderid=' . $orderId);
             Db::commit();
             $this->success(__('添加成功'), $data);
         } catch (Exception $e)

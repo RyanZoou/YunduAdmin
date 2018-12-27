@@ -96,27 +96,6 @@ define(['jquery', 'bootstrap', 'frontend', 'form', 'template'], function ($, und
                     }
                 });
             });
-        },
-        mobilenewmedia: function () {
-            // 给上传按钮添加上传成功事件
-            $("#ad_proved_div").data("upload-success", function (data) {
-                var url = Fast.api.cdnurl(data.url);
-                $(".profile-user-img").prop("src", url);
-                $("#ad_proved_img_path").val(url);
-                Toastr.success(__('Upload successful'));
-            });
-
-            Form.api.bindevent($("#ad_support_form"), function (data, ret) {
-                if (ret.code == 1) {
-                    if (confirm("添加成功，是否跳转查看结果？")) {
-                        setTimeout(function () {
-                            location.href = data.url ? data.url : "/";
-                        }, 1000);
-                    } else {
-                        alert("添加失败");
-                    }
-                }
-            });
         }
     };
     return Controller;

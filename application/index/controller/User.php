@@ -284,36 +284,6 @@ class User extends Frontend
         return $this->view->fetch();
     }
 
-    public function mobileNewMedia()
-    {
-        $this->view->assign('title', __('Mobile New Media'));
-        return $this->view->fetch();
-    }
-
-    public function videoAdvertisement()
-    {
-        $this->view->assign('title', __('Video advertisement'));
-        return $this->view->fetch();
-    }
-
-    public function smallProgramProduction()
-    {
-        $this->view->assign('title', __('Small program production'));
-        return $this->view->fetch();
-    }
-
-    public function fullBigData()
-    {
-        $this->view->assign('title', __('Anchor advertisement'));
-        return $this->view->fetch();
-    }
-
-    public function resultData()
-    {
-        $this->view->assign('title', __('Delivery data management'));
-        return $this->view->fetch();
-    }
-
     public function accountFlow()
     {
         $this->view->assign('title', __('Account flow'));

@@ -7,18 +7,18 @@
         <li class="list-group-item {:$config['actionname']=='changepwd'?'active':''}"> <a href="{:url('user/changepwd')}"><i class="fa fa-key fa-fw"></i> {:__('Change password')}</a> </li>
 
         <li class="list-group-heading" style="background: lightgray;margin: 5px auto;height: 36px;text-align: center;line-height: 36px;font-size: 16px;color: black"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;{:__('Advertising delivery')}</li>
-        <li class="list-group-item {:$config['actionname']=='mobile_new_media'?'active':''}"> <a href="mobilenewmedia"><i class="glyphicon glyphicon-phone"></i>  &nbsp;{:__('Mobile New Media')}</a> </li>
-        <li class="list-group-item {:$config['actionname']=='video_advertisement'?'active':''}"> <a href="videoadvertisement"><i class="glyphicon glyphicon-film"></i>&nbsp; {:__('Video advertisement')}</a> </li>
-        <li class="list-group-item {:$config['actionname']=='small_program_production'?'active':''}"> <a href="smallprogramproduction"><i class="glyphicon glyphicon-record"></i>  &nbsp;{:__('Small program production')}</a> </li>
-        <li class="list-group-item {:$config['actionname']=='full_netcom_big_data'?'active':''}"> <a href="fullbigdata"><i class="glyphicon glyphicon-link"></i>  &nbsp;{:__('Full Netcom Big Data')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='mobilenewmedia'?'active':''}"> <a href="../order/mobilenewmedia"><i class="glyphicon glyphicon-phone"></i>  &nbsp;{:__('Mobile New Media')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='videoadvertisement'?'active':''}"> <a href="../order/videoadvertisement"><i class="glyphicon glyphicon-film"></i>&nbsp; {:__('Video advertisement')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='smallprogramproduction'?'active':''}"> <a href="../order/smallprogramproduction"><i class="glyphicon glyphicon-record"></i>  &nbsp;{:__('Small program production')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='fullbigdata'?'active':''}"> <a href="../order/fullbigdata"><i class="glyphicon glyphicon-link"></i>  &nbsp;{:__('Full Netcom Big Data')}</a> </li>
 
         <li class="list-group-heading" style="background: lightgray;margin: 5px auto;height: 36px;text-align: center;line-height: 36px;font-size: 16px;color: black"><span class="glyphicon glyphicon-indent-left"></span> &nbsp;{:__('Put in management')}</li>
-        <li class="list-group-item {:$config['actionname']=='result_data'?'active':''}"> <a href="resultdata"><i class="glyphicon glyphicon-calendar"></i> &nbsp;{:__('Delivery data management')}</a> </li>
-        <li class="list-group-item {:$config['actionname']=='user_flow'?'active':''}"> <a href="accountflow"><i class="glyphicon glyphicon-retweet"></i> &nbsp;{:__('Account flow')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='lists'?'active':''}"> <a href="../order/lists"><i class="glyphicon glyphicon-calendar"></i> &nbsp;{:__('Delivery data management')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='accountflow'?'active':''}"> <a href="accountflow"><i class="glyphicon glyphicon-retweet"></i> &nbsp;{:__('Account flow')}</a> </li>
 
         <li class="list-group-heading" style="background: lightgray;margin: 5px auto;height: 36px;text-align: center;line-height: 36px;font-size: 16px;color: black"><span class="glyphicon glyphicon-bullhorn"></span> &nbsp;{:__('Information Center')}</li>
-        <li class="list-group-item {:$config['actionname']=='admin_information'?'active':''}"> <a href="admininformation"><i class="glyphicon glyphicon-user"></i> &nbsp;{:__('Admin Information')}</a> </li>
-        <li class="list-group-item {:$config['actionname']=='more_features'?'active':''}"> <a href="morefeatures"><i class="glyphicon glyphicon-briefcase"></i> &nbsp;{:__('More Features')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='admininformation'?'active':''}"> <a href="admininformation"><i class="glyphicon glyphicon-user"></i> &nbsp;{:__('Admin Information')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='morefeatures'?'active':''}"> <a href="morefeatures"><i class="glyphicon glyphicon-briefcase"></i> &nbsp;{:__('More Features')}</a> </li>
 
     </ul>
     {:hook('user_sidenav_after')}
