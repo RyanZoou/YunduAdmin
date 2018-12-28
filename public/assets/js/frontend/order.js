@@ -43,11 +43,11 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 columns: [
                     [
                         {field: 'adName', title: '投放名称', formatter:Table.api.formatter.search, operate: 'LIKE'},
-                        {field: 'adType', title: '广告投放', operate: 'LIKE'},
+                        {field: 'adType', title: '广告投放', searchList: {'移动新媒体':'移动新媒体', "视频广告": '视频广告', "小程序制作":'小程序制作', '全网通大数据':'全网通大数据'},operate: 'FIND_IN_SET', formatter: Table.api.formatter.status},
                         {field: 'status', title: '投放状态', searchList: {"new": '新申请', "pendding": '已审核', "active":'活跃的', 'working':'投放中', 'expired': '已结束', 'canceled' : '已取消'}, operate: 'FIND_IN_SET', formatter: Table.api.formatter.label},
                         {field: 'adBusinessType', title: '投放行业',operate: 'LIKE'},
                         {field: 'adPlatform', title: '投放平台',operate: 'LIKE'},
-                        {field: 'adMode', title: '广告形式',operate: 'LIKE'},
+                        {field: 'adMode', title: '广告形式',operate: 'LIKE',visible: false,},
                         {field: 'adPosition', title: '广告位', visible: false,},
                         {field: 'adProvedFilePath', title: '资质证明', formatter: Table.api.formatter.image,visible: false,},
                         {field: 'adForGender', title: '性别',visible: false,},

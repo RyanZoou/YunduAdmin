@@ -137,5 +137,5 @@ return [
     'Admin Information'                                       => '管理员信息',
     'More Features'                                           => '更多功能',
 
-    'ApplyList'                                               => '申请列表'
+    'Click to search %s'                                    => '点击搜索 %s',
 ];
