@@ -28,7 +28,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 extend: {
                     index_url: 'order/lists',
                     detail_url: 'order/detail',
-                    cancel_url: 'order/cancel',
+                    cancel_url: 'api/order/cancel',
                     table: 'order',
                 }
             });
@@ -44,7 +44,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     [
                         {field: 'adName', title: '投放名称', formatter:Table.api.formatter.search, operate: 'LIKE'},
                         {field: 'adType', title: '广告投放', operate: 'LIKE'},
-                        {field: 'status', title: '投放状态', searchList: {"new": '新申请', "pendding": '已审核', "active":'活跃的', 'working':'投放中', 'expired': '已结束'}, operate: 'FIND_IN_SET', formatter: Table.api.formatter.label},
+                        {field: 'status', title: '投放状态', searchList: {"new": '新申请', "pendding": '已审核', "active":'活跃的', 'working':'投放中', 'expired': '已结束', 'canceled' : '已取消'}, operate: 'FIND_IN_SET', formatter: Table.api.formatter.label},
                         {field: 'adBusinessType', title: '投放行业',operate: 'LIKE'},
                         {field: 'adPlatform', title: '投放平台',operate: 'LIKE'},
                         {field: 'adMode', title: '广告形式',operate: 'LIKE'},
@@ -87,7 +87,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     title: __('点击取消申请'),
                                     classname: 'btn btn-xs btn-success btn-magic btn-ajax',
                                     icon: 'fa fa-magic',
-                                    url: 'order/cancel',
+                                    url: '../api/order/cancel',
                                     confirm: __('确定要取消投放该项目吗？'),
                                     visible: function (row) {
                                         if (row.status == 'new') {
@@ -97,7 +97,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                         }
                                     },
                                     success: function (data, ret) {
-                                        Layer.alert(ret.msg + ",返回数据：" + JSON.stringify(data));
+                                        Layer.alert(ret.msg);
+                                        setTimeout(function () {
+                                            location.href = data.url ? data.url : "/";
+                                        }, 1000);
                                         //如果需要阻止成功提示，则必须使用return false;
                                         //return false;
                                     },

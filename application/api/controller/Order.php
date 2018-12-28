@@ -11,18 +11,21 @@ use think\Db;
 class Order extends Api
 {
 
+    protected $userInfo = '';
+
     public function _initialize()
     {
         parent::_initialize();
+        $this->userInfo = $this->auth->getUserinfo();;
     }
 
     public function add()
     {
-        $user_info = $this->auth->getUserinfo();
         $params = $this->request->request();
+        $rootUrl = $this->request->root();
 
         $data = [];
-        $data['userId'] = $user_info['id'];
+        $data['userId'] = $this->userInfo['id'];
 
         if (!isset($params['ad_type'])){
             $this->error(__('未添加广告类型'));
@@ -65,7 +68,7 @@ class Order extends Api
         $data['adBusinessType'] = addslashes($params['ad_business']);
         $data['adPlatform'] = addslashes($params['ad_platform']);
         $data['adPosition'] = addslashes($params['ad_position']);
-        $data['adProvedFilePath'] = addslashes(preg_replace('@/YunduAdmin/public@','',$params['ad_proved_img_path']));
+        $data['adProvedFilePath'] = addslashes(str_replace($rootUrl,'',$params['ad_proved_img_path']));
         $data['adForGender'] = addslashes($params['ad_gender']);
         $data['adForArea'] = addslashes($params['ad_city']);
         $data['adDateRange'] = addslashes($params['ad_date_range']);
@@ -111,7 +114,7 @@ class Order extends Api
         try {
             $order = ModerOrder::create($data);
             $orderId = $order->getLastInsID();
-            $data = array('order_id' => $orderId, 'url' => '../order/index?orderid=' . $orderId);
+            $data = array('order_id' => $orderId, 'url' => '../order/lists');
             Db::commit();
             $this->success(__('添加成功'), $data);
         } catch (Exception $e)
@@ -121,10 +124,35 @@ class Order extends Api
         }
     }
 
-    public function getOrders()
+    public function cancel($ids)
     {
-        $user_info = $this->auth->getUserinfo();
-        print_r($user_info);exit;
+        if (!$ids) {
+            $this->error(__('取消申请必须传入申请编号'));
+        }
+        $row = ModerOrder::get($ids);
+        if (!$row) {
+            $this->error(__('No Results were found'));
+        }
+        $rowData = $row->toArray();
+        if ($rowData['userId'] != $this->userInfo['id']){
+            $this->error(__('您没有权限取消该申请'));
+        }
+
+        if ($rowData['status'] != 'new'){
+            $this->error(__('该订单已经被审核无法取消，亲联系管理员取消'));
+        }
+
+        Db::startTrans();
+        try {
+            ModerOrder::update(array('status'=> 'canceled'), "id=$ids");
+            Db::commit();
+            $data = array('url' => '../order/lists');
+            $this->success(__('取消成功'), $data);
+        } catch (Exception $e)
+        {
+            Db::rollback();
+            $this->error('取消失败');
+        }
     }
 
 

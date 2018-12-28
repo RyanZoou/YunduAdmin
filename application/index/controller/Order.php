@@ -24,12 +24,12 @@ class Order extends Frontend
      */
     protected $searchFields = 'id,adName,adBusinessType';
 
-    private $userId = null;
+    private $userInfo = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->userId = $this->auth->getUserinfo()['id'];
+        $this->userInfo = $this->auth->getUserinfo();
         $this->model = model('Order');
     }
 
@@ -68,7 +68,7 @@ class Order extends Frontend
 
         $rowData = $row->toArray();
 
-        if ($rowData['userId'] != $this->userId) {
+        if ($rowData['userId'] != $this->userInfo['id']) {
             $this->error(__('You have no permission'));
         }
         if ($this->request->isPost()) {
@@ -145,8 +145,8 @@ class Order extends Frontend
             unset($item);
             $sort = implode(',', $sortArr);
         }
-        if ($this->userId) {
-            $where[] = ['userId', '=', $this->userId];
+        if ($this->userInfo['id']) {
+            $where[] = ['userId', '=', $this->userInfo['id']];
         }
         if ($search) {
             $searcharr = is_array($searchfields) ? $searchfields : explode(',', $searchfields);
