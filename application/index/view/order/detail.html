@@ -1,0 +1,25 @@
+{__NOLAYOUT__}
+
+<html>
+<head>
+    {include file="common/meta" /}
+    <link href="__CDN__/assets/css/user.css?v={$Think.config.site.version}" rel="stylesheet">
+</head>
+<style>
+    #header-navbar > ul > li > a {
+        color: slategray;
+    }
+</style>
+
+<body>
+<main class="content">
+    <div class="row">
+        <span class="control-label col-xs-12 col-sm-2">投放名称:</span>
+        <span class="col-xs-12 col-sm-4">{$orderData['adName']}</span>
+    </div>
+</main>
+</body>
+</html>
+
+
+
