@@ -88,4 +88,43 @@ class Category Extends Model
         return $list;
     }
 
+    function generateTree($array){
+        //第一步 构造数据
+        $items = array();
+        foreach($array as $value){
+            $items[$value['id']] = $value;
+        }
+        //第二部 遍历数据 生成树状结构
+        $tree = array();
+        foreach($items as $key => $item){
+            if(isset($items[$item['pid']])){
+                $items[$item['pid']]['son'][] = &$items[$key];
+            }else{
+                $tree[] = &$items[$key];
+            }
+        }
+        return $tree;
+    }
+
+    function getTreeName($data)
+    {
+        $categoryList = [];
+        foreach ($data as $value) {
+            $categoryList[$value['name']] = array();
+            if (isset($value['son']) && !empty($value['son'])) {
+                foreach ($value['son'] as $vSon) {
+                    $categoryList[$value['name']][$vSon['name']] = array();
+                    if (isset($vSon['son']) && !empty($vSon['son'])) {
+                        foreach ($vSon['son'] as $vvSon) {
+                            if (isset($vvSon['name'])) {
+                                $categoryList[$value['name']][$vSon['name']][$vvSon['name']] = '';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return $categoryList;
+    }
+
 }

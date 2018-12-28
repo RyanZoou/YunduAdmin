@@ -88,66 +88,10 @@
                         <div class="form-group">
                             <div class="row">
                                 <label class="col-md-2" for="ad_platform" style="text-align: right;">投放平台</label>
-                                <div class="col-md-3">
-                                    <select class="form-control" id="ad_platform" name="ad_platform">
-                                        <option value="腾讯">腾讯</option>
-                                        <option value="新浪">新浪</option>
-                                        <option value="搜狐">搜狐</option>
-                                        <option value="陌陌">陌陌</option>
-                                        <option value="UC">UC</option>
-                                    </select>
+                                <div class="col-md-8">
+                                    {:Form::cxselect('ajax/platformCategoryChoose', ['ad_platform','ad_mode','ad_position'])}
                                 </div>
-                                <span class="col-md-7"></span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-md-2" style="text-align: right;">广告形式</label>
-                                <div class="col-md-10">
-                                    <label class="ad_mode">
-                                        <input type="checkbox" value="电脑端官网" name="ad_mode_pc"> 电脑端官网
-                                    </label>
-                                    <label class="ad_mode">
-                                        <input type="checkbox" value="AIO迷你页" name="ad_mode_AIO"> AIO迷你页
-                                    </label>
-                                    <label class="ad_mode">
-                                        <input type="checkbox" value="手机端官网" name="ad_mode_phone"> 手机端官网
-                                    </label>
-                                    <label class="ad_mode">
-                                        <input type="checkbox" value="新闻客户端" name="ad_mode_news"> 新闻客户端
-                                    </label>
-                                    <label class="ad_mode">
-                                        <input type="checkbox" value="天天快报" name="ad_mode_kuaibao"> 天天快报
-                                    </label>
-                                    <label class="ad_mode">
-                                        <input type="checkbox" value="插件" name="ad_mode_Plugin"> 插件
-                                    </label>
-                                    <label class="ad_mode">
-                                        <input type="checkbox" value="应用app" name="ad_mode_app"> 应用app
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-md-2" style="text-align: right;">广&nbsp; 告&nbsp; 位</label>
-                                <div class="col-md-9">
-                                    <label class="ad_position_label">
-                                        <input type="radio" name="ad_position" value="大图"> 大图
-                                    </label>
-                                    <label class="ad_position_label">
-                                        <input type="radio" name="ad_position" value="3图"> 3图
-                                    </label>
-                                    <label class="ad_position_label">
-                                        <input type="radio" name="ad_position" value="小图"> 小图
-                                    </label>
-                                    <label class="ad_position_label">
-                                        <input type="radio" name="ad_position" value="聚焦图"> 聚焦图
-                                    </label>
-                                </div>
-                                <span class="col-md-1"></span>
+                                <span class="col-md-2"></span>
                             </div>
                         </div>
 
@@ -157,8 +101,8 @@
                                 <div class="col-md-9">
                                     <input type="hidden" name="ad_proved_img_path" id="ad_proved_img_path" value="" />
                                     <div class="profile-avatar-container">
-                                        <img class="profile-user-img img-responsive img-circle plupload" src="" alt="">
-                                        <div class="profile-avatar-text img-circle">点击上传</div>
+                                        <img class="profile-user-img img-responsive plupload">
+                                        <div class="profile-avatar-text">点击上传</div>
                                         <button id="ad_proved_div" class="plupload" data-mimetype="png,jpg,jpeg,gif" data-input-id="c-avatar"><i class="fa fa-upload"></i> {:__('Upload')}</button>
                                     </div>
                                 </div>
