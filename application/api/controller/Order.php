@@ -39,20 +39,23 @@ class Order extends Api
         if (!$params['ad_platform']) {
             $this->error(__('请选择投放平台'));
         }
-        if (!isset($params['ad_position'])) {
-            $this->error(__('请选择广告位'));
+        if (!isset($params['ad_mode']) || !$params['ad_mode']) {
+            $this->error(__("请选择 '{$params['ad_mode']}' 平台下的广告类型"));
+        }
+        if (isset($params['ad_position']) && !$params['ad_position']) {
+            $this->error(__("请选择 '{$params['ad_platform']}' 平台下 '{$params['ad_mode']}' 的广告位置"));
         }
         if (!$params['ad_proved_img_path']) {
             $this->error(__('请上传资质证明'));
+        }
+        if (!isset($params['ad_gender']) || !$params['ad_gender']) {
+            $this->error(__('请选择性别'));
         }
         if (!$params['ad_city']) {
             $this->error(__('请选择投放地区'));
         }
         if (!$params['ad_date_range']) {
             $this->error(__('请选择日期范围'));
-        }
-        if (!$params['ad_daily_price']) {
-            $this->error(__('请输入每日预算'));
         }
         if (!$params['ad_daily_price']) {
             $this->error(__('请输入每日预算'));
@@ -68,6 +71,7 @@ class Order extends Api
         $data['adBusinessType'] = addslashes($params['ad_business']);
         $data['adPlatform'] = addslashes($params['ad_platform']);
         $data['adPosition'] = addslashes($params['ad_position']);
+        $data['adMode'] = @addslashes($params['ad_mode']);
         $data['adProvedFilePath'] = addslashes(str_replace($rootUrl,'',$params['ad_proved_img_path']));
         $data['adForGender'] = addslashes($params['ad_gender']);
         $data['adForArea'] = addslashes($params['ad_city']);
@@ -76,14 +80,10 @@ class Order extends Api
         $data['adDailyPrice'] = intval($params['ad_daily_price']) > 200 ? intval($params['ad_daily_price']) : 200;
         $data['adPayType'] = addslashes($params['ad_pay_type']);
 
-        $ad_mode = [];
         $ad_age = [];
         $ad_hobby = [];
         foreach ($params as $key => $val) {
             $key_arr = explode('_', $key);
-            if (isset($key_arr[0]) && isset($key_arr[1]) && $key_arr[0]=='ad' && $key_arr[1]=='mode') {
-                $ad_mode[] = $val;
-            }
             if (isset($key_arr[0]) && isset($key_arr[1]) && $key_arr[0]=='ad' && $key_arr[1]=='age') {
                 $ad_age[] = $val;
             }
@@ -91,7 +91,7 @@ class Order extends Api
                 $ad_hobby[] = $val;
             }
         }
-        $data['adMode'] = join(',', $ad_mode);
+
         if (in_array('不限', $ad_age)) {
             $data['adForAge'] = '不限';
         } else {
@@ -103,8 +103,8 @@ class Order extends Api
             $data['adHobbyType'] = join(',', $ad_hobby);
         }
 
-        if (!$data['adMode'] || empty($data['adMode'])) {
-            $this->error(__('请选择广告形式'));
+        if (!$data['adForAge'] || empty($data['adForAge'])) {
+            $this->error(__('请选择面向的年龄段'));
         }
         if (!$data['adHobbyType'] || empty($data['adHobbyType'])) {
             $this->error(__('请选择兴趣分类'));

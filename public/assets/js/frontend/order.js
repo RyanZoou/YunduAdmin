@@ -21,8 +21,6 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     }
                 }
             });
-
-            Form.api.bindevent($("#ad_support_form"));
         },
         lists: function () {
             // 初始化表格参数配置
