@@ -14,11 +14,11 @@
 
         <li class="list-group-heading" style="background: lightgray;margin: 5px auto;height: 36px;text-align: center;line-height: 36px;font-size: 16px;color: black"><span class="glyphicon glyphicon-indent-left"></span> &nbsp;{:__('Put in management')}</li>
         <li class="list-group-item {:$config['actionname']=='lists'?'active':''}"> <a href="../order/lists"><i class="glyphicon glyphicon-calendar"></i> &nbsp;{:__('Delivery data management')}</a> </li>
-        <li class="list-group-item {:$config['actionname']=='accountflow'?'active':''}"> <a href="accountflow"><i class="glyphicon glyphicon-retweet"></i> &nbsp;{:__('Account flow')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='accountflow'?'active':''}"> <a href="../user/accountflow"><i class="glyphicon glyphicon-retweet"></i> &nbsp;{:__('Account flow')}</a> </li>
 
         <li class="list-group-heading" style="background: lightgray;margin: 5px auto;height: 36px;text-align: center;line-height: 36px;font-size: 16px;color: black"><span class="glyphicon glyphicon-bullhorn"></span> &nbsp;{:__('Information Center')}</li>
-        <li class="list-group-item {:$config['actionname']=='admininformation'?'active':''}"> <a href="admininformation"><i class="glyphicon glyphicon-user"></i> &nbsp;{:__('Admin Information')}</a> </li>
-        <li class="list-group-item {:$config['actionname']=='morefeatures'?'active':''}"> <a href="morefeatures"><i class="glyphicon glyphicon-briefcase"></i> &nbsp;{:__('More Features')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='admininformation'?'active':''}"> <a href="../user/admininformation"><i class="glyphicon glyphicon-user"></i> &nbsp;{:__('Admin Information')}</a> </li>
+        <li class="list-group-item {:$config['actionname']=='morefeatures'?'active':''}"> <a href="../user/morefeatures"><i class="glyphicon glyphicon-briefcase"></i> &nbsp;{:__('More Features')}</a> </li>
 
     </ul>
     {:hook('user_sidenav_after')}
