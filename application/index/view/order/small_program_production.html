@@ -1,10 +1,331 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<style>
+    .ad_mode,.ad_position_label{
+        display: inline-block;
+        float: left;
+        margin-right: 15px;
+    }
+    label{
+        line-height: 31px;
+        font-weight:normal;
+    }
+    .profile-avatar-container {
+        position:relative;
+        width:150px;
+    }
+    .profile-avatar-container .profile-user-img{
+        width:150px;
+        height:150px;
+    }
+    .profile-avatar-container .profile-avatar-text {
+        display:none;
+    }
+    .profile-avatar-container:hover .profile-avatar-text {
+        display:block;
+        position:absolute;
+        height:150px;
+        width:150px;
+        background:#444;
+        opacity: .6;
+        color: #fff;
+        top:0;
+        left:0;
+        line-height: 150px;
+        text-align: center;
+    }
+    .profile-avatar-container button{
+        position:absolute;
+        top:0;left:0;width:100px;height:100px;opacity: 0;
+    }
+</style>
 
-</body>
-</html>
+<script src="http://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+<link href="__CDN__/assets/libs/bootstrap-daterangepicker/daterangepicker.scss" rel="stylesheet">
+<script src="__CDN__/assets/libs/moment/moment.js"></script>
+<script src="__CDN__/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<div id="content-container" class="container">
+    <div class="row">
+        <div class="col-md-2">
+            {include file="common/sidenav" /}
+        </div>
+        <div class="col-md-10" style="margin-top: 15px">
+            <div class="panel panel-default ">
+                <div class="panel-body">
+                    <h3 class="page-header">
+                        {:__('Small program production')}
+                    </h3>
+                    <form id="ad_support_form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="{:url('api/Order/add')}">
+                        {:token()}
+                        <input type="hidden" name="ad_type" value="小程序制作">
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" for="ad_name" style="text-align: right;">小视频名称</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" id="ad_name" name="ad_name" style="background: lightgray">
+                                </div>
+                                <span class="col-md-2"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" for="ad_business" style="text-align: right;">投放行业</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" id="ad_business" name="ad_business">
+                                        <option value="食品">食品</option>
+                                        <option value="粮油调味">粮油调味</option>
+                                        <option value="冲调饮品">冲调饮品</option>
+                                        <option value="乳制品">乳制品</option>
+                                        <option value="生鲜">生鲜</option>
+                                        <option value="酒水">酒水</option>
+                                        <option value="食品综合">食品综合</option>
+                                    </select>
+                                </div>
+                                <span class="col-md-7"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" for="ad_platform" style="text-align: right;">投放平台</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" id="ad_platform" name="ad_platform">
+                                        <option value="腾讯">腾讯</option>
+                                        <option value="支付宝">支付宝</option>
+                                        <option value="美团">美团</option>
+                                        <option value="饿了么">饿了么</option>
+                                    </select>
+                                </div>
+                                <span class="col-md-7"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" for="ad_proved_div" style="text-align: right;">资质上传</label>
+                                <div class="col-md-9">
+                                    <input type="hidden" name="ad_proved_img_path" id="ad_proved_img_path" value="" />
+                                    <div class="profile-avatar-container">
+                                        <img class="profile-user-img img-responsive plupload" src="" alt="">
+                                        <div class="profile-avatar-text">点击上传</div>
+                                        <button id="ad_proved_div" class="plupload" data-mimetype="png,jpg,jpeg,gif" data-input-id="c-avatar"><i class="fa fa-upload"></i> {:__('Upload')}</button>
+                                    </div>
+                                </div>
+                                <span class="col-md-1"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" style="text-align: right;">性 &nbsp; &nbsp; &nbsp;&nbsp;别</label>
+                                <div class="col-md-9">
+                                    <label class="ad_position_label">
+                                        <input type="radio" name="ad_gender" value="不限" checked> 不限
+                                    </label>
+                                    <label class="ad_position_label">
+                                        <input type="radio" name="ad_gender" value="男"> 男
+                                    </label>
+                                    <label class="ad_position_label">
+                                        <input type="radio" name="ad_gender" value="女"> 女
+                                    </label>
+                                </div>
+                                <span class="col-md-1"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" style="text-align: right;">年&nbsp; 龄&nbsp; 段</label>
+                                <div class="col-md-10">
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="不限" name="ad_age_all" checked> 不限
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="1~18" name="ad_age_1_18"> 1~18
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="19~23" name="ad_age_19_23"> 19~23
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="24~30" name="ad_age_24_30"> 24~30
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="31~40" name="ad_age_31_40"> 31~40
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="41~50" name="ad_age_41_50"> 41~50
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="51~59" name="ad_age_51_59"> 51~59
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="60以上" name="ad_age_60"> 60以上
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" style="text-align: right;">兴趣分类</label>
+                                <div class="col-md-9">
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="不限" name="ad_hobby_type_all" checked> 不限
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="游戏" name="ad_hobby_type_1"> 游戏
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="购物百货" name="ad_hobby_type_2"> 购物百货
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="金融理财" name="ad_hobby_type_3"> 金融理财
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="旅游出行" name="ad_hobby_type_4"> 旅游出行
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="服饰箱包" name="ad_hobby_type_5"> 服饰箱包
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="美容美妆" name="ad_hobby_type_6"> 美容美妆
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="汽车" name="ad_hobby_type_7"> 汽车
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="房产" name="ad_hobby_type_8"> 房产
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="餐饮美食" name="ad_hobby_type_9"> 餐饮美食
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="母婴儿童" name="ad_hobby_type_10"> 母婴儿童
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="科技数码" name="ad_hobby_type_11"> 科技数码
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="体育运动" name="ad_hobby_type_12"> 体育运动
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="生活服务" name="ad_hobby_type_13"> 生活服务
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="医疗健康" name="ad_hobby_type_14"> 医疗健康
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="法律服务" name="ad_hobby_type_15"> 法律服务
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="文化娱乐" name="ad_hobby_type_16"> 文化娱乐
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="商务服务" name="ad_hobby_type_17"> 商务服务
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="装修建材" name="ad_hobby_type_18"> 装修建材
+                                    </label>
+                                    <label class="ad_mode">
+                                        <input type="checkbox" value="教育培训" name="ad_hobby_type_19"> 教育培训
+                                    </label>
+                                </div>
+                                <span class="col-md-1"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" for="city-picker" style="text-align: right;">投放地区</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="city-picker" name="ad_city" data-toggle="city-picker" readonly style="width: 80%">
+                                </div>
+                                <span class="col-md-2"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" for="reportrange" style="text-align: right;">投放日期</label>
+                                <div class="col-md-8">
+                                    <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                                        <span></span> <b class="caret"></b>
+                                        <input type="hidden" id="ad_date_range" name="ad_date_range">
+                                    </div>
+                                </div>
+                                <span class="col-md-2"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" for="ad_time_special" style="text-align: right;">投放时段</label>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" id="ad_time_special" name="ad_time_special" placeholder="如果您对时间点有特殊要求请说明"></textarea>
+                                </div>
+                                <span class="col-md-2"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" for="ad_daily_price" style="text-align: right;">每日预算</label>
+                                <div class="col-md-4">
+                                    <input type="number" class="form-control" id="ad_daily_price" name="ad_daily_price" placeholder="最低200">
+                                </div>
+                                <span class="col-md-6"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2" style="text-align: right;">出价形式</label>
+                                <div class="col-md-9">
+                                    <label class="ad_position_label">
+                                        <input type="radio" name="ad_pay_type" value="CPC"> CPC
+                                    </label>
+                                    <label class="ad_position_label">
+                                        <input type="radio" name="ad_pay_type" value="CPM"> CPM
+                                    </label>
+                                </div>
+                                <span class="col-md-1"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <button id="ad_submit" type="submit" class="col-md-2 btn btn-md btn-info">{:__('Submit')}</button>
+                                <div class="col-md-9">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    $(function() {
+        var start = moment();
+        var end = moment().add(30, 'days');
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('YYYY-MM-DD') + ' &nbsp; &nbsp;至 &nbsp; &nbsp;' + end.format('YYYY-MM-DD'));
+            $('#ad_date_range').val(start.format('YYYY-MM-DD') + ' 至 ' + end.format('YYYY-MM-DD'));
+        }
+        $('#reportrange').daterangepicker({
+            startDate: start,
+            endDate: end,
+        }, cb);
+        cb(start, end);
+    });
+
+</script>

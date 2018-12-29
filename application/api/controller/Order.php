@@ -39,11 +39,13 @@ class Order extends Api
         if (!$params['ad_platform']) {
             $this->error(__('请选择投放平台'));
         }
-        if (!isset($params['ad_mode']) || !$params['ad_mode']) {
-            $this->error(__("请选择 '{$params['ad_mode']}' 平台下的广告类型"));
-        }
-        if (isset($params['ad_position']) && !$params['ad_position']) {
-            $this->error(__("请选择 '{$params['ad_platform']}' 平台下 '{$params['ad_mode']}' 的广告位置"));
+        if ($params['ad_type'] != '小程序制作') {
+            if (!isset($params['ad_mode']) || !$params['ad_mode']) {
+                $this->error(__("请选择 '{$params['ad_mode']}' 平台下的广告类型"));
+            }
+            if (isset($params['ad_position']) && !$params['ad_position']) {
+                $this->error(__("请选择 '{$params['ad_platform']}' 平台下 '{$params['ad_mode']}' 的广告位置"));
+            }
         }
         if (!$params['ad_proved_img_path']) {
             $this->error(__('请上传资质证明'));
@@ -70,7 +72,7 @@ class Order extends Api
         $data['adName'] = addslashes($params['ad_name']);
         $data['adBusinessType'] = addslashes($params['ad_business']);
         $data['adPlatform'] = addslashes($params['ad_platform']);
-        $data['adPosition'] = addslashes($params['ad_position']);
+        $data['adPosition'] = @addslashes($params['ad_position']);
         $data['adMode'] = @addslashes($params['ad_mode']);
         $data['adProvedFilePath'] = addslashes(str_replace($rootUrl,'',$params['ad_proved_img_path']));
         $data['adForGender'] = addslashes($params['ad_gender']);
