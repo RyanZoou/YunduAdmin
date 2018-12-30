@@ -3,8 +3,10 @@
 namespace app\index\controller;
 
 use app\common\controller\Frontend;
+use app\common\model\MoneyLog;
 use think\Config;
 use think\Cookie;
+use think\Db;
 use think\Hook;
 use think\Session;
 use think\Validate;
@@ -18,6 +20,10 @@ class User extends Frontend
     protected $layout = 'default';
     protected $noNeedLogin = ['login', 'register', 'third'];
     protected $noNeedRight = ['*'];
+
+    protected $searchFields = 'id,memo';
+
+    protected $relationSearch = false;
 
     public function _initialize()
     {
@@ -157,11 +163,13 @@ class User extends Frontend
         if ($this->request->isPost()) {
             $account = $this->request->post('account');
             $password = $this->request->post('password');
+            $captcha = $this->request->post('captcha');
             $keeplogin = (int)$this->request->post('keeplogin');
             $token = $this->request->post('__token__');
             $rule = [
                 'account'   => 'require|length:3,50',
                 'password'  => 'require|length:6,30',
+                'captcha'   => 'require|captcha',
                 '__token__' => 'token',
             ];
 
@@ -170,10 +178,13 @@ class User extends Frontend
                 'account.length'   => 'Account must be 3 to 50 characters',
                 'password.require' => 'Password can not be empty',
                 'password.length'  => 'Password must be 6 to 30 characters',
+                'captcha.require'  => 'Captcha can not be empty',
+                'captcha.captcha'  => 'Captcha is incorrect',
             ];
             $data = [
                 'account'   => $account,
                 'password'  => $password,
+                'captcha'   => $captcha,
                 '__token__' => $token,
             ];
             $validate = new Validate($rule, $msg);
@@ -287,12 +298,46 @@ class User extends Frontend
     public function accountFlow()
     {
         $this->view->assign('title', __('Account flow'));
+
+        //设置过滤方法
+        $this->request->filter(['strip_tags']);
+        //如果发送的来源是Selectpage，则转发到Selectpage
+        if ($this->request->request('keyField'))
+        {
+            return $this->selectpage();
+        }
+        if ($this->request->isAjax())
+        {
+            $model = model('MoneyLog');
+            list($where, $sort, $order, $offset, $limit) = $this->buildparams();
+
+            $total = $model
+                ->where($where)
+                ->where('user_id', $this->auth->getUserinfo()['id'])
+                ->field('*')
+                ->order($sort, $order)
+                ->count();
+
+            $list = $model
+                ->where($where)
+                ->where('user_id', $this->auth->getUserinfo()['id'])
+                ->field('*')
+                ->order($sort, $order)
+                ->limit($offset, $limit)
+                ->select();
+
+            $result = array("total" => $total, "rows" => $list);
+
+            return json($result);exit;
+        }
         return $this->view->fetch();
     }
 
     public function adminInformation()
     {
         $this->view->assign('title', __('Admin Information'));
+        $adminList = \think\Db::table('yd_admin')->field('username,nickname,avatar,email,logintime,status')->select();
+        $this->view->assign('adminList', $adminList);
         return $this->view->fetch();
     }
 

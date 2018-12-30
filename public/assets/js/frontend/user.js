@@ -1,4 +1,4 @@
-define(['jquery', 'bootstrap', 'frontend', 'form', 'template'], function ($, undefined, Frontend, Form, Template) {
+define(['jquery', 'bootstrap', 'frontend','form', 'table', 'template'], function ($, undefined, Frontend, Form, Table, Template) {
     var validatoroptions = {
         invalid: function (form, errors) {
             $.each(errors, function (i, j) {
@@ -96,7 +96,43 @@ define(['jquery', 'bootstrap', 'frontend', 'form', 'template'], function ($, und
                     }
                 });
             });
+        },
+        accountflow: function () {
+            // 初始化表格参数配置
+            Table.api.init({
+                extend: {
+                    index_url: 'user/accountflow',
+                    table: 'yd_user_money_log',
+                }
+            });
+
+            var table = $("#table");
+
+            // 初始化表格
+            table.bootstrapTable({
+                url: $.fn.bootstrapTable.defaults.extend.index_url,
+                pk: 'id',
+                showToggle: false,
+                showColumns: false,
+                sortName: 'createtime',
+                columns: [
+                    [
+                        {field: 'id', title: 'ID',},
+                        {field: 'before', title: '更改前余额',},
+                        {field: 'money', title: '交易改变值',},
+                        {field: 'after', title: '剩余金额',},
+                        {field: 'memo', title: '更改说明', operate: 'LIKE'},
+                        {field: 'createtime', title: '更改时间', formatter: Table.api.formatter.datetime, addclass: 'datetimerange', operate: 'RANGE',sortable: true},
+                    ]
+                ]
+            });
+
+            // 为表格绑定事件
+            Table.api.bindevent(table);
+
+            $("button[name='commonSearch']").css('margin','-10px 0 auto 4px');
         }
     };
+
     return Controller;
 });
