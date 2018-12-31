@@ -103,7 +103,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                             field: 'status',
                             title: '投放状态',
                             custom: {'canceled':'danger', 'working':'success', 'pendding': 'warning'},
-                            searchList: {"new": '新申请', "pendding": '已审核', "active":'活跃的', 'working':'投放中', 'expired': '已结束', 'canceled' : '已取消'},
+                            searchList: {"new": '新申请', "pendding": '已审核', 'working':'投放中', 'expired': '已结束', 'canceled' : '已取消'},
                             operate: 'FIND_IN_SET',
                             formatter: Table.api.formatter.label
                         },
