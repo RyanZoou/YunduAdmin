@@ -16,5 +16,9 @@ class Order Extends Model
     protected $pk = 'id';
 
 
+    public function user()
+    {
+        return $this->belongsTo('User', 'user_id', 'id', [], 'LEFT')->setEagerlyType(0);
+    }
 
 }

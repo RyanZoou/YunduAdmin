@@ -25,7 +25,7 @@ class Order extends Api
         $rootUrl = $this->request->root();
 
         $data = [];
-        $data['userId'] = $this->userInfo['id'];
+        $data['user_id'] = $this->userInfo['id'];
 
         if (!isset($params['ad_type'])){
             $this->error(__('未添加广告类型'));
@@ -136,9 +136,39 @@ class Order extends Api
             $this->error(__('No Results were found'));
         }
         $rowData = $row->toArray();
-        if ($rowData['userId'] != $this->userInfo['id']){
+        if ($rowData['user_id'] != $this->userInfo['id']){
             $this->error(__('您没有权限取消该申请'));
         }
+
+        if ($rowData['status'] != 'new'){
+            $this->error(__('该订单已经被审核无法取消，请联系管理员取消'));
+        }
+
+        Db::startTrans();
+        try {
+            ModerOrder::update(array('status'=> 'canceled'), "id=$ids");
+            Db::commit();
+            $data = array('url' => '../order/lists');
+            $this->success(__('取消成功'), $data);
+        } catch (Exception $e)
+        {
+            Db::rollback();
+            $this->error('取消失败');
+        }
+    }
+
+    public function editStatus($ids, $status)
+    {
+        if (!$ids) {
+            $this->error(__('取消申请必须传入申请编号'));
+        }
+        $row = ModerOrder::get($ids);
+        if (!$row) {
+            $this->error(__('No Results were found'));
+        }
+
+        //设置仅管理员才能操作状态
+
 
         if ($rowData['status'] != 'new'){
             $this->error(__('该订单已经被审核无法取消，亲联系管理员取消'));
@@ -156,7 +186,5 @@ class Order extends Api
             $this->error('取消失败');
         }
     }
-
-
 
 }
