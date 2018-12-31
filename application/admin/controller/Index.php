@@ -31,7 +31,7 @@ class Index extends Backend
     {
         //左侧菜单
         list($menulist, $navlist, $fixedmenu, $referermenu) = $this->auth->getSidebar([
-            'admin/order' => ['hot', 'red'],
+            'order/index' => ['hot', 'red'],
             'addon'     => ['new', 'red', 'badge'],
             'auth/rule' => __('Menu'),
             'general'   => ['new', 'purple'],
