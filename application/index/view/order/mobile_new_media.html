@@ -36,6 +36,30 @@
         position:absolute;
         top:0;left:0;width:100px;height:100px;opacity: 0;
     }
+    .time_box {
+        border: 0;
+        border-radius: 2px;
+        width: 22px;
+        background: lightgray;
+        line-height: 19px;
+        padding: 2px;
+        margin-left: 3px;
+        display: block;
+        float: left;
+    }
+    .week_box {
+        border: 0;
+        line-height: 19px;
+        padding: 2px 4px;
+        margin: 0 6px;
+        border-radius: 2px;
+        background: lightgray;
+        display: block;
+        float: left;
+    }
+    .special_time_a {
+        color: #0273BB;
+    }
 </style>
 
 <script src="http://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
@@ -59,7 +83,7 @@
                         <input type="hidden" name="ad_type" value="移动新媒体">
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-md-2" for="ad_name" style="text-align: right;">投放名称</label>
+                                <label class="col-md-2" for="ad_name" style="text-align: right;"><span style="color: red;">* </span>投放名称</label>
                                 <div class="col-md-8">
                                     <input class="form-control" id="ad_name" name="ad_name" style="background: lightgray">
                                 </div>
@@ -69,7 +93,7 @@
 
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-md-2" for="ad_business" style="text-align: right;">投放行业</label>
+                                <label class="col-md-2" for="ad_business" style="text-align: right;"><span style="color: red;">* </span>投放行业</label>
                                 <div class="col-md-3">
                                     <select class="form-control" id="ad_business" name="ad_business">
                                         <option value="食品">食品</option>
@@ -87,7 +111,7 @@
 
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-md-2" for="ad_platform" style="text-align: right;">投放平台</label>
+                                <label class="col-md-2" style="text-align: right;"><span style="color: red;">* </span>投放平台</label>
                                 <div class="col-md-8">
                                     {:Form::cxselect('ajax/platformCategoryChoose', ['ad_platform','ad_mode','ad_position'])}
                                 </div>
@@ -97,7 +121,7 @@
 
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-md-2" for="ad_proved_div" style="text-align: right;">资质上传</label>
+                                <label class="col-md-2" for="ad_proved_div" style="text-align: right;"><span style="color: red;">* </span>资质上传</label>
                                 <div class="col-md-9">
                                     <input type="hidden" name="ad_proved_img_path" id="ad_proved_img_path" value="" />
                                     <div class="profile-avatar-container">
@@ -112,7 +136,7 @@
 
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-md-2" style="text-align: right;">性 &nbsp; &nbsp; &nbsp;&nbsp;别</label>
+                                <label class="col-md-2" style="text-align: right;"><span style="color: red;">* </span>性 &nbsp; &nbsp; &nbsp;&nbsp;别</label>
                                 <div class="col-md-9">
                                     <label class="ad_position_label">
                                         <input type="radio" name="ad_gender" value="不限"> 不限
@@ -130,7 +154,7 @@
 
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-md-2" style="text-align: right;">年&nbsp; 龄&nbsp; 段</label>
+                                <label class="col-md-2" style="text-align: right;"><span style="color: red;">* </span>年&nbsp; 龄&nbsp; 段</label>
                                 <div class="col-md-10">
                                     <label class="ad_mode">
                                         <input type="checkbox" value="不限" name="ad_age_all"> 不限
@@ -162,7 +186,7 @@
 
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-md-2" style="text-align: right;">兴趣分类</label>
+                                <label class="col-md-2" style="text-align: right;"><span style="color: red;">* </span>兴趣分类</label>
                                 <div class="col-md-9">
                                     <label class="ad_mode">
                                         <input type="checkbox" value="不限" name="ad_hobby_type_all"> 不限
@@ -231,40 +255,65 @@
 
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-md-2" for="city-picker" style="text-align: right;">投放地区</label>
-                                <div class="col-md-8">
-                                    <input type="text" id="city-picker" name="ad_city" data-toggle="city-picker" readonly style="width: 80%">
+                                <label class="col-md-2" for="city-picker" style="text-align: right;"><span style="color: red;">* </span>投放地区</label>
+                                <div class="col-md-7">
+                                    <input type="text" id="city-picker" name="ad_city" data-toggle="city-picker" readonly style="width: 100%">
                                 </div>
-                                <span class="col-md-2"></span>
+                                <label class="col-md-3" title="如果选中全国将不记录选中的城市" style="font-size: 18px;font-family: 宋体;">
+                                    <input type="checkbox" name="ad_city_all" > <b>全国</b>
+                                </label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-md-2" for="reportrange" style="text-align: right;">投放日期</label>
-                                <div class="col-md-8">
+                                <label class="col-md-2" for="reportrange" style="text-align: right;"><span style="color: red;">* </span>投放日期</label>
+                                <div class="col-md-9">
                                     <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
                                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
                                         <span></span> <b class="caret"></b>
                                         <input type="hidden" id="ad_date_range" name="ad_date_range">
                                     </div>
                                 </div>
-                                <span class="col-md-2"></span>
+                                <span class="col-md-1"></span>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-md-2" for="ad_time_special" style="text-align: right;">投放时段</label>
-                                <div class="col-md-8">
-                                    <textarea class="form-control" id="ad_time_special" name="ad_time_special" placeholder="如果您对时间点有特殊要求请说明"></textarea>
+                                <label class="col-md-2" style="text-align: right;"><span style="color: red;">* </span>投放时段</label>
+                                <input type="hidden" id="ad_time_special_input" name="ad_time_special" value="">
+                                <div class="col-md-9">
+                                    <div id="ad_special_time" style="border: 1px solid lightgray;border-radius: 3px;padding: 10px 10px 10px 20px;width: 100%">
+                                        <div class="row" style="padding: 2px 0 10px 10px">
+                                            <a class="special_time_a" id="select_all_time">全选</a> |
+                                            <a class="special_time_a" id="select_all_workday">工作日(一到五)</a> |
+                                            <a class="special_time_a" id="select_all_weekend">休息日(六、日)</a> |
+                                            <a class="special_time_a" id="select_none_time">清空</a>
+                                            <span style="display: block;float: right;padding-right: 30px">
+                                                <span style="width:16px;height: 16px;background: lightgray;border-radius: 2px;display: inline-block"></span> :未选中 &nbsp;&nbsp;
+                                                <span style="width:16px;height: 16px;background: #0273BB;border-radius: 2px;display: inline-block"></span> :已选中
+                                            </span>
+                                        </div>
+                                        <div id="time_select_detail">
+                                            {foreach $special_time as $weekDay => $time_arr}
+                                            <div class="row {if(in_array($weekDay,array('Saturday','Sunday')))}weekend_class{else}workday_class{/if}" style="padding: 2px 0 1px 0">
+                                                <button class="week_box" type="button" select="false">{$week_map[$weekDay]}</button>
+                                                {foreach $time_arr as $time_name => $time}
+                                                <button class="time_box" type="button" select="false">{$time}</button>
+                                                {/foreach}
+                                            </div>
+                                            {/foreach}
+                                        </div>
+                                    </div>
                                 </div>
-                                <span class="col-md-2"></span>
+                                <span class="col-md-1"></span>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-md-2" for="ad_daily_price" style="text-align: right;">每日预算</label>
+                                <label class="col-md-2" for="ad_daily_price" style="text-align: right;"><span style="color: red;">* </span>每日预算</label>
                                 <div class="col-md-4">
                                     <input type="number" class="form-control" id="ad_daily_price" name="ad_daily_price" placeholder="最低200">
                                 </div>
@@ -273,7 +322,7 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-md-2" style="text-align: right;">出价形式</label>
+                                <label class="col-md-2" style="text-align: right;"><span style="color: red;">* </span>出价形式</label>
                                 <div class="col-md-9">
                                     <label class="ad_position_label">
                                         <input type="radio" name="ad_pay_type" value="CPC"> CPC
@@ -323,4 +372,91 @@
         cb(start, end);
     });
 
+    $(".time_box").on("click",function () {
+        if ($(this).attr("select") != 'true') {
+            $(this).attr('select', 'true');
+            $(this).css('color', '#ffffff');
+            $(this).css('background', '#0273BB');
+        } else {
+            $(this).parent().find("button:first").attr('select','false');
+            $(this).parent().find("button:first").css('color', '#000');
+            $(this).parent().find("button:first").css('background', 'lightgray');
+            $(this).attr('select','false');
+            $(this).css('color', '#000');
+            $(this).css('background', 'lightgray');
+        }
+        putArrToSpecialTime();
+    });
+    $(".week_box").on("click",function () {
+        if ($(this).attr("select") != 'true') {
+            $(this).attr('select','true');
+            $(this).parent().find('button').css('color', '#ffffff');
+            $(this).parent().find('button').css('background', '#0273BB');
+            $(this).parent().find('button').attr('select','true');
+        }else {
+            $(this).attr('select','false');
+            $(this).parent().find('button').css('color', '#000');
+            $(this).parent().find('button').css('background', 'lightgray');
+            $(this).parent().find('button').attr('select','false');
+        }
+        putArrToSpecialTime();
+    });
+    $("#select_all_time").on("click",function () {
+        $(this).parent().parent().find('button').css('color', '#ffffff');
+        $(this).parent().parent().find('button').css('background', '#0273BB');
+        $(this).parent().parent().find('button').attr('select', 'true');
+        putArrToSpecialTime();
+    });
+    $("#select_none_time").on("click",function () {
+        $(this).parent().parent().find('button').css('color', '#000');
+        $(this).parent().parent().find('button').css('background', 'lightgray');
+        $(this).parent().parent().find('button').attr('select','false');
+        $("#ad_time_special_input").val('');
+        putArrToSpecialTime();
+    });
+    $("#select_all_workday").on("click",function () {
+        if ($(".workday_class button").attr('select') != 'true') {
+            $(".workday_class button").css('color', '#ffffff');
+            $(".workday_class button").css('background', '#0273BB');
+            $(".workday_class button").attr('select', 'true');
+        } else {
+            $(".workday_class button").css('color', '#000');
+            $(".workday_class button").css('background', 'lightgray');
+            $(".workday_class button").attr('select', 'false');
+        }
+        putArrToSpecialTime();
+    });
+    $("#select_all_weekend").on("click",function () {
+        if ($(".weekend_class button").attr('select') != 'true') {
+            $(".weekend_class button").css('color', '#ffffff');
+            $(".weekend_class button").css('background', '#0273BB');
+            $(".weekend_class button").attr('select', 'true');
+        } else {
+            $(".weekend_class button").css('color', '#000');
+            $(".weekend_class button").css('background', 'lightgray');
+            $(".weekend_class button").attr('select', 'false');
+        }
+        putArrToSpecialTime();
+    });
+
+    function putArrToSpecialTime(){
+        var time_value = {};
+        $("#time_select_detail div").each(function (index) {
+            var week_day = $(this).find('button:first').text();
+            if ($(this).find('button:first').attr('select') == 'true') {
+                time_value[week_day] = 'all';
+            } else {
+                time_value[week_day] = [];
+                $(this).find("button:not(:first)").each(function () {
+                    if ($(this).attr('select') == 'true') {
+                        var time_num = $(this).text();
+                        time_value[week_day].push(time_num);
+                    }
+                })
+            }
+        });
+
+        var time_str = JSON.stringify(time_value);
+        $("#ad_time_special_input").val(time_str);
+    }
 </script>

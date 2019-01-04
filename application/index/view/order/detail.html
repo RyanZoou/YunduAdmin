@@ -1,5 +1,12 @@
 {__NOLAYOUT__}
-
+<style>
+    .title_text {
+        text-align: right;
+    }
+    .title_content {
+        padding-left: 10%;
+    }
+</style>
 <html>
 <head>
     {include file="common/meta" /}
@@ -11,12 +18,26 @@
     }
 </style>
 
-<body>
+<body style="padding-top: 0px">
 <main class="content">
-    <div class="row">
-        <span class="control-label col-xs-12 col-sm-2">投放名称:</span>
-        <span class="col-xs-12 col-sm-4">{$orderData['adName']}</span>
+    <h1 class="page-header" align="center" style="line-height: 60px;font-size: 26px">
+        {:__($orderData['adName']." 投放详情")}
+    </h1>
+    {foreach $orderData as $key=>$val}
+    <div class="row" style="line-height: 50px;font-size: 20px">
+        {if(!in_array($key, ['id', 'user_id','lastUpdateTime','adName']))}
+        <span class="col-xs-5 title_text">{$key_map[$key]} :</span>
+        {if $key == 'adProvedFilePath'}
+        <span class="col-xs-7"><img src="__CDN__{$val}" style="width: 50%;"></span>
+        {elseif($key == 'status')}
+        <span class="col-xs-7 title_content">&nbsp;&nbsp;&nbsp;{$status_arr[$val]}</span>
+        {else}
+        <span class="col-xs-7 title_content">&nbsp;&nbsp;&nbsp;{$val}</span>
+        {/if}
+        {/if}
     </div>
+    {/foreach}
+
 </main>
 </body>
 </html>

@@ -53,11 +53,14 @@ class Order extends Api
         if (!isset($params['ad_gender']) || !$params['ad_gender']) {
             $this->error(__('请选择性别'));
         }
-        if (!$params['ad_city']) {
+        if (!$params['ad_city'] && !isset($params['ad_city_all'])) {
             $this->error(__('请选择投放地区'));
         }
         if (!$params['ad_date_range']) {
             $this->error(__('请选择日期范围'));
+        }
+        if (!$params['ad_time_special']) {
+            $this->error(__('请选择投放时段'));
         }
         if (!$params['ad_daily_price']) {
             $this->error(__('请输入每日预算'));
@@ -76,9 +79,9 @@ class Order extends Api
         $data['adMode'] = @addslashes($params['ad_mode']);
         $data['adProvedFilePath'] = addslashes(str_replace($rootUrl,'',$params['ad_proved_img_path']));
         $data['adForGender'] = addslashes($params['ad_gender']);
-        $data['adForArea'] = addslashes($params['ad_city']);
+        $data['adForArea'] = isset($params['ad_city_all']) ? '全国' : addslashes($params['ad_city']);
         $data['adDateRange'] = addslashes($params['ad_date_range']);
-        $data['adTimeSpecial'] = @addslashes($params['ad_time_special']);
+        $data['adTimeSpecial'] = addslashes($params['ad_time_special']);
         $data['adDailyPrice'] = intval($params['ad_daily_price']) > 200 ? intval($params['ad_daily_price']) : 200;
         $data['adPayType'] = addslashes($params['ad_pay_type']);
 
