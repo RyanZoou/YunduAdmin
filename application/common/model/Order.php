@@ -21,4 +21,9 @@ class Order Extends Model
         return $this->belongsTo('User', 'user_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 
+    public function smallProgram()
+    {
+        return $this->belongsTo('SmallProgram', 'orderId', 'id', [], 'LEFT')->setEagerlyType(0);
+    }
+
 }

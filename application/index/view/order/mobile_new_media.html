@@ -85,7 +85,7 @@
                             <div class="row">
                                 <label class="col-md-2" for="ad_name" style="text-align: right;"><span style="color: red;">* </span>投放名称</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" id="ad_name" name="ad_name" style="background: lightgray">
+                                    <input class="form-control" id="ad_name" name="ad_name" style="background: lightgray" data-rule="required">
                                 </div>
                                 <span class="col-md-2"></span>
                             </div>
@@ -123,7 +123,7 @@
                             <div class="row">
                                 <label class="col-md-2" for="ad_proved_div" style="text-align: right;"><span style="color: red;">* </span>资质上传</label>
                                 <div class="col-md-9">
-                                    <input type="hidden" name="ad_proved_img_path" id="ad_proved_img_path" value="" />
+                                    <input type="hidden" name="ad_proved_img_path" id="ad_proved_img_path" value="" data-rule="required"/>
                                     <div class="profile-avatar-container">
                                         <img class="profile-user-img img-responsive plupload">
                                         <div class="profile-avatar-text">点击上传</div>
@@ -139,13 +139,13 @@
                                 <label class="col-md-2" style="text-align: right;"><span style="color: red;">* </span>性 &nbsp; &nbsp; &nbsp;&nbsp;别</label>
                                 <div class="col-md-9">
                                     <label class="ad_position_label">
-                                        <input type="radio" name="ad_gender" value="不限"> 不限
+                                        <input type="radio" name="ad_gender" value="不限" data-rule="checked"> 不限
                                     </label>
                                     <label class="ad_position_label">
-                                        <input type="radio" name="ad_gender" value="男"> 男
+                                        <input type="radio" name="ad_gender" value="男" data-rule="checked"> 男
                                     </label>
                                     <label class="ad_position_label">
-                                        <input type="radio" name="ad_gender" value="女"> 女
+                                        <input type="radio" name="ad_gender" value="女" data-rule="checked"> 女
                                     </label>
                                 </div>
                                 <span class="col-md-1"></span>
@@ -272,7 +272,7 @@
                                     <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
                                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
                                         <span></span> <b class="caret"></b>
-                                        <input type="hidden" id="ad_date_range" name="ad_date_range">
+                                        <input type="hidden" id="ad_date_range" name="ad_date_range" data-rule="required">
                                     </div>
                                 </div>
                                 <span class="col-md-1"></span>
@@ -315,7 +315,7 @@
                             <div class="row">
                                 <label class="col-md-2" for="ad_daily_price" style="text-align: right;"><span style="color: red;">* </span>每日预算</label>
                                 <div class="col-md-4">
-                                    <input type="number" class="form-control" id="ad_daily_price" name="ad_daily_price" placeholder="最低200">
+                                    <input type="number" class="form-control" id="ad_daily_price" name="ad_daily_price" placeholder="最低200" data-rule="required">
                                 </div>
                                 <span class="col-md-6"></span>
                             </div>
@@ -325,10 +325,10 @@
                                 <label class="col-md-2" style="text-align: right;"><span style="color: red;">* </span>出价形式</label>
                                 <div class="col-md-9">
                                     <label class="ad_position_label">
-                                        <input type="radio" name="ad_pay_type" value="CPC"> CPC
+                                        <input type="radio" name="ad_pay_type" value="CPC" data-rule="checked"> CPC
                                     </label>
                                     <label class="ad_position_label">
-                                        <input type="radio" name="ad_pay_type" value="CPM"> CPM
+                                        <input type="radio" name="ad_pay_type" value="CPM" data-rule="checked"> CPM
                                     </label>
                                 </div>
                                 <span class="col-md-1"></span>

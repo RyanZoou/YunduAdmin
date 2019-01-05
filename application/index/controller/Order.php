@@ -243,6 +243,8 @@ class Order extends Frontend
     public function videoAdvertisement()
     {
         $this->view->assign('title', __('Video advertisement'));
+        $this->view->assign('special_time', $this->specialTime);
+        $this->view->assign('week_map', $this->weekMap);
         return $this->view->fetch();
     }
 
@@ -255,6 +257,8 @@ class Order extends Frontend
     public function fullBigData()
     {
         $this->view->assign('title', __('Anchor advertisement'));
+        $this->view->assign('special_time', $this->specialTime);
+        $this->view->assign('week_map', $this->weekMap);
         return $this->view->fetch();
     }
 

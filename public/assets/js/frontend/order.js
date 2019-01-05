@@ -19,6 +19,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     }
                 }
             });
+
+            $("select[name='ad_platform']").css('width','20%');
+            $("select[name='ad_mode']").css('width','20%');
+            $("select[name='ad_position']").css('width','20%');
         },
         videoadvertisement: function () {
             // 给上传按钮添加上传成功事件
@@ -38,6 +42,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     }
                 }
             });
+
+            $("select[name='ad_platform']").css('width','20%');
+            $("select[name='ad_mode']").css('width','20%');
+            $("select[name='ad_position']").css('width','20%');
         },
         smallprogramproduction: function () {
             // 给上传按钮添加上传成功事件
@@ -76,6 +84,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     }
                 }
             });
+
+            $("select[name='ad_platform']").css('width','20%');
+            $("select[name='ad_mode']").css('width','20%');
+            $("select[name='ad_position']").css('width','20%');
         },
         lists: function () {
             // 初始化表格参数配置
